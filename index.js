@@ -29,6 +29,17 @@ app.post('/webhook', line.middleware(config), (req, res) => {
 
 const client = new line.Client(config);
 
+app.get('/remind_medicine', (req, res) =>{
+    // テキストで通知を全員に一斉通知
+    const messages = [{
+        type: 'text',
+        text: 'お薬の時間です。'
+    }];
+    client.broadcast(messages)
+        .then(data => res.json(data))
+        .catch(e => res.status(500).send(e));
+});
+
 async function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     return Promise.resolve(null);
