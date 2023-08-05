@@ -33,7 +33,7 @@ app.get('/remind_medicine', (req, res) =>{
     // テキストで通知を全員に一斉通知
     const messages = [{
         type: 'text',
-        text: 'お薬の時間です。'
+        text: 'お昼の薬の時間です。\nいつもの場所に置いてあるお薬を飲んでください。'
     }];
     client.broadcast(messages)
         .then(data => res.json(data))
